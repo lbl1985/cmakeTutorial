@@ -44,7 +44,7 @@ add_test (TutorialRuns Tutorial 25)
 
 add_test (TutorialUsage Tutorial)
 set_tests_properties(TutorialUsage
-	PROPERTIES PASS_REGULAR_EXPRESSION "Version")
+	PROPERTIES PASS_REGULAR_EXPRESSION "Usage:.*number")
 
 #define a macro to simplify adding tests, then use it
 macro (do_test arg result)
