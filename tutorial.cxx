@@ -19,6 +19,10 @@ int main (int argc, char *argv[])
   }
 
   double inputValue = atof(argv[1]);
+#if defined (HAVE_LOG) && defined (HAVE_EXP)
+  printf("both HAVE_LOG and HAVE_EXP are defined.\n");
+#endif
+  
 #ifdef USE_MYMATH
   double outputValue = mysqrt(inputValue);
 #else

@@ -5,9 +5,14 @@ project (Tutorial)
 set (Tutorial_VERSION_MAJOR 2)
 set (Tutorial_VERSION_MINOR 0)
 
+#STEP 4: ADD SYSTEM INTROSPECTION
+#does this system provide the log and exp functions?
+include (CheckFunctionExists)
+check_function_exists (log HAVE_LOG)
+check_function_exists (exp HAVE_EXP)
+
 # configure a header file to pass some of the CMake settings
 # to the source file
-
 configure_file (
 	"${PROJECT_SOURCE_DIR}/TutorialConfig.h.in"
 	"${PROJECT_BINARY_DIR}/TutorialConfig.h"
@@ -32,11 +37,13 @@ endif (USE_MYMATH)
 add_executable(Tutorial tutorial.cxx)
 target_link_libraries (Tutorial ${EXTRA_LIBS})
 
+#STEP 3: INSTALLING
 # add the install targets
 install (TARGETS Tutorial DESTINATION bin)
 install (FILES "${PROJECT_BINARY_DIR}/TutorialConfig.h"
 		 DESTINATION include)
 
+#STEP 3: TESTING
 include(CTest)
 
 # does the application run
